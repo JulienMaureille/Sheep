@@ -1,10 +1,12 @@
 h1 {
   text-align: center;
+  margin-bottom:10%;
 }
+
 
 app-message-list{
   height: 500px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }
 
 
