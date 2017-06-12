@@ -39,11 +39,10 @@ export class ThreadService {
      * Fonction addThread : pour ajouter un nouveau thread
      */
     public addThread(thread: ThreadModel) {
-        let headers = new Headers({'Content-Type' : 'application/json'});
-        let options = new RequestOptions({headers: headers});
-
+        const headers = new Headers({'Content-Type' : 'application/json'});
+        const options = new RequestOptions({headers: headers});
         this.http.post(this.url, thread, options)
-            .map(this.extractData);
+        .subscribe((response) => this.extractThreadAndGetThreads(response));
     }
 
     /**
@@ -63,7 +62,12 @@ export class ThreadService {
         const threadList = response.json() || [];
         this.threadList$.next(threadList);
     }
-    extractData(){
 
-    }
+
+  private extractThreadAndGetThreads(response: Response): ThreadModel {
+    this.getThreads();
+    const responseBody = response.json();
+    return new ThreadModel(responseBody.id, responseBody.name); // A remplacer ! On retourne ici un Thread *
+                                                                 // vide seulement pour que Typescript ne lève pas d'erreur !
+  }
 }
