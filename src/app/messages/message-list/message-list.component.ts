@@ -27,9 +27,13 @@ export class MessageListComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-    this.messageService.getMessages(this.route);
-    this.messageService.messageList$.subscribe((messages) => this.messageList = messages.reverse());
+    this.messageService.messageList$.subscribe((messages) => this.refreshChat(messages))
+    setInterval(() => (this.messageService.getMessages(this.route)), 300);
   }
 
+  private refreshChat(messages: MessageModel[]) {
+    this.messageList = messages.reverse();
+    console.log("refresh");
+  }
 
 }

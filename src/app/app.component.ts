@@ -1,5 +1,5 @@
-import { Component } from "@angular/core";
-import { Observable } from "rxjs/Observable";
+import {Component} from "@angular/core";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: "app-root",
@@ -14,4 +14,5 @@ export class AppComponent {
     this.title = "Chat";
     Observable.create();
   }
+
 }
