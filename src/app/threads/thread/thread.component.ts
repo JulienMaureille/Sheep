@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from "@angular/core";
 
 import { ThreadModel } from "../../../shared/models/ThreadModel";
+import {MessageService} from "../../../shared/services/message/message.service";
 
 @Component({
     selector: "app-thread",
@@ -11,7 +12,7 @@ export class ThreadComponent implements OnInit {
 
     @Input() thread: ThreadModel;
 
-    constructor() {
+    constructor(private messageService : MessageService) {
         //this.thread = new ThreadModel(0, "Hello!");
     }
     /**
@@ -23,5 +24,9 @@ export class ThreadComponent implements OnInit {
      * le faire dans le ngOnInit.
      */
     ngOnInit() { }
+
+    changeThread(){
+        this.messageService.getMessages(this.thread.id+"\\messages");
+    }
 
 }
