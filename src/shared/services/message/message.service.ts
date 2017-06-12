@@ -61,16 +61,20 @@ export class MessageService {
 
   public getOlderMessages() {
     clearInterval(this.interval);
-    let currentThread = new CurrentThreadModel();
     let tmpList: Array<MessageModel> = [];
-    for (var i = 0; i <= 20; i++) {
-      console.log(this.url + currentThread.getMessagesRoute() + "?page=" + i);
-      this.http.get(this.url + currentThread.getMessagesRoute() + "?page=" + i)
-        .subscribe((responses) => responses.json().reverse().forEach((response) => tmpList.push(response)));
-    }
+    this.http.get(this.url + new CurrentThreadModel().getMessagesRoute())
+      .subscribe((responses) => this.loadHistory(tmpList, responses, 0));
     console.log(tmpList);
     this.messageList$.next(tmpList);
     console.log(this.messageList$);
+  }
+
+  private loadHistory(tmpList: Array<MessageModel>, responses: Response, i: number) {
+    responses.json().forEach((response) => tmpList.push(response));
+    if (i <= 20)
+      this.http.get(this.url + new CurrentThreadModel().getMessagesRoute() + "?page=" + i)
+        .subscribe((responses) => this.loadHistory(tmpList, responses, i));
+
   }
 
   /**
