@@ -1,6 +1,5 @@
 <p>
-  <input type="text" class="form-control" id="name"  required [(ngModel)]="message.content" name="name">
-  <input type="text" class="form-control" id="from" required [(ngModel)]="message.from" name="from">
+  <input type="text" class="form-control i_from" id="from" required [(ngModel)]="message.from" name="from">
+  <textarea type="text" class="form-control i_message" id="name"  required [(ngModel)]="message.content" name="name"></textarea>
   <button class="btn btn-primary" (click)="sendMessage()"> Send </button>
-  <br>Message model: {{message | json}}
 </p>
