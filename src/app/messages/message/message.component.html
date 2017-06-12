@@ -1,3 +1,4 @@
-<p>
-  <strong>{{message.from}}</strong> {{message.content}}
-</p>
+
+  <div class="infos"><strong>{{message.from}}</strong> - <span class="time">{{message.createdAt | date:'dd-MM-yyyy - HH:mm:ss'}}</span></div>
+  <div class="content mb-3">{{message.content}}</div>
+
