@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 
-import { MessageService } from "../../../shared/services";
-import { MessageModel } from "../../../shared/models/MessageModel";
+import {MessageService} from "../../../shared/services";
+import {MessageModel} from "../../../shared/models/MessageModel";
 
 @Component({
   selector: "app-message-list",
@@ -28,7 +28,8 @@ export class MessageListComponent implements OnInit {
    */
   ngOnInit() {
     this.messageService.getMessages(this.route);
-    this.messageService.messageList$.subscribe((messages) => this.messageList = messages);
+    this.messageService.messageList$.subscribe((messages) => this.messageList = messages.reverse());
   }
+
 
 }
