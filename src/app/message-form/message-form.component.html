@@ -1,5 +1,7 @@
 <p>
-  <input type="text" class="form-control i_from" id="from" required [(ngModel)]="message.from" name="from">
-  <textarea type="text" class="form-control i_message" id="name"  required [(ngModel)]="message.content" name="name"></textarea>
+  <input type="text" class="form-control" id="name"  required [(ngModel)]="message.content" name="name">
+  <input type="text" class="form-control" id="from" required [(ngModel)]="message.from" name="from">
   <button class="btn btn-primary" (click)="sendMessage()"> Send </button>
+  <button class="btn btn-info" (click)="displayOlderMessages()" [innerHTML]="historiqueMsg"></button>
+  <!--<br>Message model: {{message | json}}-->
 </p>

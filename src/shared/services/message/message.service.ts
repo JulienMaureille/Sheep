@@ -1,10 +1,10 @@
-import { Injectable } from "@angular/core";
+import {Injectable} from "@angular/core";
 import {Headers, Http, RequestOptions, Response} from "@angular/http";
-import { Observable } from "rxjs/Observable";
+import {Observable} from "rxjs/Observable";
 
 import "rxjs/add/operator/map";
 import "rxjs/add/operator/catch";
-import { URLSERVER } from "shared/constants/urls";
+import {URLSERVER} from "shared/constants/urls";
 import {MessageModel} from "../../models/MessageModel";
 import {ReplaySubject} from "rxjs/ReplaySubject";
 import {CurrentThreadModel} from "../../models/CurrentThreadModel";
@@ -27,11 +27,18 @@ export class MessageService {
    * dans lequel vous trouverez une première explication sur les observables ainsi qu'une vidéo tutoriel.
    */
   public messageList$: ReplaySubject<MessageModel[]>;
+  private interval: any;
 
   constructor(private http: Http) {
     this.url = URLSERVER;
     this.messageList$ = new ReplaySubject(1);
     this.messageList$.next([new MessageModel()]);
+    this.startInterval();
+  }
+
+
+  public startInterval() {
+    this.interval = setInterval(() => (this.getMessages(new CurrentThreadModel().getMessagesRoute())), 300);
   }
 
   /**
@@ -49,6 +56,25 @@ export class MessageService {
     console.log(finalUrl);
     this.http.get(finalUrl)
       .subscribe((response) => this.extractAndUpdateMessageList(response));
+
+  }
+
+  public getOlderMessages() {
+    clearInterval(this.interval);
+    let tmpList: Array<MessageModel> = [];
+    this.http.get(this.url + new CurrentThreadModel().getMessagesRoute())
+      .subscribe((responses) => this.loadHistory(tmpList, responses, 0));
+    console.log(tmpList);
+    this.messageList$.next(tmpList);
+    console.log(this.messageList$);
+  }
+
+  private loadHistory(tmpList: Array<MessageModel>, responses: Response, i: number) {
+    responses.json().forEach((response) => tmpList.push(response));
+    if (i <= 20)
+      this.http.get(this.url + new CurrentThreadModel().getMessagesRoute() + "?page=" + i)
+        .subscribe((responses) => this.loadHistory(tmpList, responses, i));
+
   }
 
   /**
@@ -64,7 +90,7 @@ export class MessageService {
    */
   public sendMessage(route: string, message: MessageModel) {
     const finalUrl = this.url + route;
-    let headers = new Headers({'Content-Type' : 'application/json'});
+    let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
 
     this.http.post(finalUrl, message, options)

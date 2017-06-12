@@ -28,8 +28,7 @@ export class MessageListComponent implements OnInit {
    * l'initialisation simple des variables. Pour plus d'information sur le ngOnInit, il y a un lien dans le README.
    */
   ngOnInit() {
-    this.messageService.messageList$.subscribe((messages) => this.refreshChat(messages))
-    setInterval(() => (this.messageService.getMessages( new CurrentThreadModel().getMessagesRoute())), 300);
+    this.messageService.messageList$.subscribe((messages) => this.refreshChat(messages));
   }
 
   private refreshChat(messages: MessageModel[]) {
