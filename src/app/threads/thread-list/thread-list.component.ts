@@ -14,6 +14,7 @@ import { ThreadModel } from "../../../shared/models/ThreadModel";
 export class ThreadListComponent implements OnInit {
 
     public threadList: ThreadModel[];
+    public threadName: string;
 
     constructor(private threadService: ThreadService) {
 
@@ -25,7 +26,7 @@ export class ThreadListComponent implements OnInit {
     }
 
   addThread() {
-        this.threadService.addThread(new ThreadModel(50,"team_DDDDD"));
+        this.threadService.addThread(new ThreadModel(50,this.threadName));
         this.threadService.getThreads();
     }
 

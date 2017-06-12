@@ -17,6 +17,11 @@ export class CurrentThreadModel {
     return CurrentThreadModel.currentThread + "/messages";
   }
 
+  public getId() {
+    return CurrentThreadModel.currentThread;
+  }
+
+
   public getOlderPages(){
     CurrentThreadModel._olderPages = true;
   }

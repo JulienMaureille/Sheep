@@ -1,3 +1,5 @@
-<p (click)="changeThread()">
-    <a href="#">{{thread.name}} </a>
+<p>
+    <button class="btn btn-primary" name="removeThread" (click)="removeThread()">x</button>
+    <a *ngIf="!isCurrent(); else elseBlock" href="#" (click)="changeThread()">{{thread.name}} </a>
+    <ng-template #elseBlock><span class="selected">{{thread.name}}</span></ng-template>
 </p>

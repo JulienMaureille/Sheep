@@ -3,6 +3,7 @@ import { Component, Input, OnInit } from "@angular/core";
 import { ThreadModel } from "../../../shared/models/ThreadModel";
 import {MessageService} from "../../../shared/services/message/message.service";
 import {CurrentThreadModel} from "../../../shared/models/CurrentThreadModel";
+import {ThreadService} from "../../../shared/services/thread/thread.service";
 
 @Component({
     selector: "app-thread",
@@ -13,8 +14,8 @@ export class ThreadComponent implements OnInit {
 
     @Input() thread: ThreadModel;
 
-    constructor(private messageService : MessageService) {
-        //this.thread = new ThreadModel(0, "Hello!");
+    constructor(private messageService : MessageService, private threadService : ThreadService) {
+
     }
     /**
      * Fonction ngOnInit.
@@ -26,10 +27,21 @@ export class ThreadComponent implements OnInit {
      */
     ngOnInit() { }
 
-    changeThread(){
+    isCurrent(){
+        return this.thread.id==new CurrentThreadModel().getId();
+    }
+    removeThread(){
+       this.changeThreadId(1);
+       this.threadService.removeThread(this.thread.id);
+    }
+    changeThreadId(id:number){
         let currentThread = new CurrentThreadModel();
-        currentThread.switchThread(this.thread.id)
+        currentThread.switchThread(id)
         this.messageService.getMessages(currentThread.getMessagesRoute());
+    }
+
+    changeThread(){
+        this.changeThreadId(this.thread.id);
     }
 
 }

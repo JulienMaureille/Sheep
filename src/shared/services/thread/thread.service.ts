@@ -12,6 +12,8 @@ import { ThreadModel } from "../../models/ThreadModel";
 import { ReplaySubject } from "rxjs/ReplaySubject";
 import { URLSERVER } from "shared/constants/urls";
 
+
+
 @Injectable()
 export class ThreadService {
 
@@ -48,8 +50,10 @@ export class ThreadService {
     /**
      * Fonction removeThread : pour supprimer un thread
      */
-    public removeThread(thread: ThreadModel) {
-
+    public removeThread(idThread:number) {
+        this.http.delete(this.url+idThread).subscribe((res) => {
+            this.getThreads();
+        });
     }
 
     /**
