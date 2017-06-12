@@ -1,4 +1,10 @@
-<button name="addThread" (click)="addThread()">+</button>
+<button type="button" (click)="addThread()" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Small modal</button>
+<input type="text" placeholder="name" [(ngModel)]="threadName">
+
 <div *ngFor="let currentThread of threadList">
     <app-thread [thread]="currentThread"></app-thread>
 </div>
+
+
+
+
