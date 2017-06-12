@@ -11,6 +11,7 @@ import "rxjs/add/operator/catch";
 import { ThreadModel } from "../../models/ThreadModel";
 import { ReplaySubject } from "rxjs/ReplaySubject";
 import { URLSERVER } from "shared/constants/urls";
+import {current} from "codelyzer/util/syntaxKind";
 
 
 
@@ -32,9 +33,12 @@ export class ThreadService {
      * @returns {Observable<R>}
      */
     public getThreads() {
-        const finalUrl = this.url;
-        this.http.get(finalUrl)
-            .subscribe((response) => this.extractAndUpdateThreadList(response));
+      this.getThreadsFromPage(0);
+    }
+    public getThreadsFromPage(page: number) {
+      const finalUrl = this.url + "?page=" + page;
+      this.http.get(finalUrl)
+        .subscribe((response) => {this.extractAndUpdateThreadList(response); });
     }
 
     /**
@@ -50,8 +54,8 @@ export class ThreadService {
     /**
      * Fonction removeThread : pour supprimer un thread
      */
-    public removeThread(idThread:number) {
-        this.http.delete(this.url+idThread).subscribe((res) => {
+    public removeThread(idThread: number) {
+        this.http.delete(this.url + idThread).subscribe((res) => {
             this.getThreads();
         });
     }
@@ -74,4 +78,5 @@ export class ThreadService {
     return new ThreadModel(responseBody.id, responseBody.name); // A remplacer ! On retourne ici un Thread *
                                                                  // vide seulement pour que Typescript ne lève pas d'erreur !
   }
+
 }
