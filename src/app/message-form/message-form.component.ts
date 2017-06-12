@@ -13,10 +13,10 @@ export class MessageFormComponent implements OnInit {
 
   public message: MessageModel;
   private route: string;
-  public historiqueMsg = "Afficher les anciens messages";
+  public historiqueMsg = "Show older messages";
 
   constructor(private messageService: MessageService) {
-    this.message = new MessageModel(1, "Message", "moi");
+    this.message = new MessageModel(1, "Blabla", "anonymous");
     this.route = new CurrentThreadModel().getMessagesRoute();
   }
 
@@ -30,7 +30,6 @@ export class MessageFormComponent implements OnInit {
    * ainsi que le message à envoyer. Ce dernier correspond à l'objet MessageModel que l'utilisateur rempli à travers l'input.
    */
   sendMessage() {
-    console.log("Click!");
     this.messageService.sendMessage(new CurrentThreadModel().getMessagesRoute(), this.message);
   }
 

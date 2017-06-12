@@ -6,11 +6,12 @@ input {
 }
 
 .i_message{
-    height:44px;
-    font-size: 24px;
+    height:60px;
+    font-size: 25px;
+    margin-bottom: 10px;
 }
 
 .i_from{
     height:24px;
-
+    font-size: 18px;
 }
