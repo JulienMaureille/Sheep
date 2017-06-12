@@ -1,9 +1,14 @@
 <div class="p-4">
     <h2>Create a new channel</h2>
-    <input type="text" class="" placeholder="name" [(ngModel)]="threadName"><button type="button" (click)="addThread()" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Create</button>
+    <input type="text" class="" placeholder="name" [(ngModel)]="threadName" >
+    <button type="button" (click)="addThread()" class="btn btn-primary">Create</button>
 </div>
 
-<h2>List of channels</h2>
+<h2>
+  List of channels
+  <button type="button" class="btn btn-primary" (click)="previousPage()" [disabled]="previousDisabled"> <- </button>&nbsp;
+  <button type="button" class="btn btn-primary" (click)="nextPage()" [disabled]="nextDisabled"> -> </button>
+</h2>
 <div id="list" class="p-4">
     <div *ngFor="let currentThread of threadList">
         <app-thread [thread]="currentThread"></app-thread>
