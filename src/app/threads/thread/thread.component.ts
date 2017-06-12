@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from "@angular/core";
 
 import { ThreadModel } from "../../../shared/models/ThreadModel";
 import {MessageService} from "../../../shared/services/message/message.service";
+import {CurrentThreadModel} from "../../../shared/models/CurrentThreadModel";
 
 @Component({
     selector: "app-thread",
@@ -26,7 +27,9 @@ export class ThreadComponent implements OnInit {
     ngOnInit() { }
 
     changeThread(){
-        this.messageService.getMessages(this.thread.id+"\\messages");
+        let currentThread = new CurrentThreadModel();
+        currentThread.switchThread(this.thread.id)
+        this.messageService.getMessages(currentThread.getMessagesRoute());
     }
 
 }
