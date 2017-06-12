@@ -7,6 +7,7 @@ import "rxjs/add/operator/catch";
 import { URLSERVER } from "shared/constants/urls";
 import {MessageModel} from "../../models/MessageModel";
 import {ReplaySubject} from "rxjs/ReplaySubject";
+import {CurrentThreadModel} from "../../models/CurrentThreadModel";
 
 @Injectable()
 export class MessageService {
@@ -45,6 +46,7 @@ export class MessageService {
    */
   public getMessages(route: string) {
     const finalUrl = this.url + route;
+    console.log(finalUrl);
     this.http.get(finalUrl)
       .subscribe((response) => this.extractAndUpdateMessageList(response));
   }

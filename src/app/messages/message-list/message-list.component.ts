@@ -2,6 +2,7 @@ import {Component, OnInit} from "@angular/core";
 
 import {MessageService} from "../../../shared/services";
 import {MessageModel} from "../../../shared/models/MessageModel";
+import {CurrentThreadModel} from "../../../shared/models/CurrentThreadModel";
 
 @Component({
   selector: "app-message-list",
@@ -14,7 +15,7 @@ export class MessageListComponent implements OnInit {
   private route: string;
 
   constructor(private messageService: MessageService) {
-    this.route = "1/messages";
+    this.route = new CurrentThreadModel().getMessagesRoute();
   }
 
   /**
@@ -28,12 +29,11 @@ export class MessageListComponent implements OnInit {
    */
   ngOnInit() {
     this.messageService.messageList$.subscribe((messages) => this.refreshChat(messages))
-    setInterval(() => (this.messageService.getMessages(this.route)), 300);
+    setInterval(() => (this.messageService.getMessages( new CurrentThreadModel().getMessagesRoute())), 300);
   }
 
   private refreshChat(messages: MessageModel[]) {
     this.messageList = messages.reverse();
-    console.log("refresh");
   }
 
 }
