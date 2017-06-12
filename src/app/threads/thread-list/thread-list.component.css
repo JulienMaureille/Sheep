@@ -9,8 +9,30 @@ input {
     border-radius:2px;
     margin-right:5px;
     height:24px;
+    width:70%;
+}
+
+button{
+    width:20%;
 }
 
 h2{
     margin-bottom:10px;
+}
+
+.page{
+    font-size:14px;
+}
+
+.create{
+    background-color: #eeeeee;
+}
+
+.buttons{
+    align-content: center;
+    text-align: center;
+}
+
+h1,h2{
+    margin-bottom: 25px;
 }
