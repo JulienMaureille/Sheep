@@ -1,7 +1,13 @@
-<input type="text" placeholder="name" [(ngModel)]="threadName"><button type="button" (click)="addThread()" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Create</button>
+<div class="p-4">
+    <h2>Create a new channel</h2>
+    <input type="text" class="" placeholder="name" [(ngModel)]="threadName"><button type="button" (click)="addThread()" class="btn btn-primary" data-toggle="modal" data-target=".bs-example-modal-sm">Create</button>
+</div>
 
-<div *ngFor="let currentThread of threadList">
-    <app-thread [thread]="currentThread"></app-thread>
+<h2>List of channels</h2>
+<div id="list" class="p-4">
+    <div *ngFor="let currentThread of threadList">
+        <app-thread [thread]="currentThread"></app-thread>
+    </div>
 </div>
 
 

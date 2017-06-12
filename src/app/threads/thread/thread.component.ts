@@ -15,7 +15,7 @@ export class ThreadComponent implements OnInit {
     @Input() thread: ThreadModel;
 
     constructor(private messageService : MessageService, private threadService : ThreadService) {
-        //this.thread = new ThreadModel(0, "Hello!");
+
     }
     /**
      * Fonction ngOnInit.
@@ -27,6 +27,9 @@ export class ThreadComponent implements OnInit {
      */
     ngOnInit() { }
 
+    isCurrent(){
+        return this.thread.id==new CurrentThreadModel().getId();
+    }
     removeThread(){
        this.changeThreadId(1);
        this.threadService.removeThread(this.thread.id);

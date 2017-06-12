@@ -15,4 +15,9 @@ export class CurrentThreadModel {
     return CurrentThreadModel.currentThread + "/messages/";
   }
 
+  public getId() {
+    return CurrentThreadModel.currentThread;
+  }
+
+
 }
