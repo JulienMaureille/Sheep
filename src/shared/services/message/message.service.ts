@@ -66,7 +66,7 @@ export class MessageService {
     let options = new RequestOptions({headers: headers});
 
     this.http.post(finalUrl, message, options)
-      .subscribe((response) => console.log(response));
+      .subscribe((response) => this.extractMessageAndGetMessages(response, route));
   }
 
   /**
@@ -96,7 +96,10 @@ export class MessageService {
    * @returns {any|{}}
    */
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
+    this.getMessages(route);
+    let responseBody = response.json();
     // Je suis vide aussi ...
-    return new MessageModel(); // A remplacer ! On retourne ici un messageModel vide seulement pour que Typescript ne lève pas d'erreur !
+    return new MessageModel(responseBody.id, responseBody.content, responseBody.from, responseBody.createdAt,
+      responseBody.updatedAt, responseBody.threadId); // A remplacer ! On retourne ici un messageModel vide seulement pour que Typescript ne lève pas d'erreur !
   }
 }
