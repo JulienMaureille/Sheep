@@ -24,5 +24,10 @@ export class ThreadListComponent implements OnInit {
         this.threadService.threadList$.subscribe((threads) => this.threadList = threads);
     }
 
+    addThread(){
+        this.threadService.addThread(new ThreadModel(50,"team_DDDD"));
+        this.threadService.getThreads();
+    }
+
 }
 
