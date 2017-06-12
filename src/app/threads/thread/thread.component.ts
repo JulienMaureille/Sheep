@@ -26,6 +26,7 @@ export class ThreadComponent implements OnInit {
     ngOnInit() { }
 
     changeThread(){
+        console.log(this.thread.id);
         this.messageService.getMessages(this.thread.id+"\\messages");
     }
 

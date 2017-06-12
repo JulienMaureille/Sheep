@@ -98,7 +98,6 @@ export class MessageService {
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
     this.getMessages(route);
     let responseBody = response.json();
-    // Je suis vide aussi ...
     return new MessageModel(responseBody.id, responseBody.content, responseBody.from, responseBody.createdAt,
       responseBody.updatedAt, responseBody.threadId); // A remplacer ! On retourne ici un messageModel vide seulement pour que Typescript ne lève pas d'erreur !
   }

@@ -3,7 +3,7 @@
  */
 
 import { Injectable } from "@angular/core";
-import { Http, RequestOptions, Response } from "@angular/http";
+import {Http, RequestOptions, Response, Headers} from "@angular/http";
 import { Observable } from "rxjs/Observable";
 
 import "rxjs/add/operator/map";
@@ -32,14 +32,25 @@ export class ThreadService {
     public getThreads() {
         const finalUrl = this.url;
         this.http.get(finalUrl)
-            .subscribe((response) => this.extractAndUpdateMessageList(response));
+            .subscribe((response) => this.extractAndUpdateThreadList(response));
     }
 
     /**
      * Fonction addThread : pour ajouter un nouveau thread
      */
     public addThread(thread: ThreadModel) {
-        // TODO
+        let headers = new Headers({'Content-Type' : 'application/json'});
+        let options = new RequestOptions({headers: headers});
+
+        this.http.post(this.url, thread, options)
+            .map(this.extractData);
+    }
+
+    /**
+     * Fonction removeThread : pour supprimer un thread
+     */
+    public removeThread(thread: ThreadModel) {
+
     }
 
     /**
@@ -48,8 +59,11 @@ export class ThreadService {
      * des threads dans l'observable threadList$.
      * @param response
      */
-    extractAndUpdateMessageList(response: Response) {
+    extractAndUpdateThreadList(response: Response) {
         const threadList = response.json() || [];
         this.threadList$.next(threadList);
+    }
+    extractData(){
+
     }
 }
