@@ -4,5 +4,5 @@ h1 {
 
 app-message-list{
   height: 500px;
-  overflow-y: scroll;
+  overflow-y: auto;
 }

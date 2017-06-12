@@ -1,7 +1,7 @@
-import { Component, OnInit } from "@angular/core";
+import {Component, OnInit} from "@angular/core";
 
-import { MessageService } from "../../shared/services";
-import { MessageModel } from "../../shared/models/MessageModel";
+import {MessageService} from "../../shared/services";
+import {MessageModel} from "../../shared/models/MessageModel";
 import {CurrentThreadModel} from "../../shared/models/CurrentThreadModel";
 
 @Component({
@@ -13,13 +13,15 @@ export class MessageFormComponent implements OnInit {
 
   public message: MessageModel;
   private route: string;
+  public historiqueMsg = "Afficher les anciens messages";
 
   constructor(private messageService: MessageService) {
     this.message = new MessageModel(1, "Message", "moi");
     this.route = new CurrentThreadModel().getMessagesRoute();
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+  }
 
   /**
    * Fonction pour envoyer un message.
@@ -30,5 +32,16 @@ export class MessageFormComponent implements OnInit {
   sendMessage() {
     console.log("Click!");
     this.messageService.sendMessage(new CurrentThreadModel().getMessagesRoute(), this.message);
+  }
+
+  displayOlderMessages() {
+    if (this.historiqueMsg == "Afficher les anciens messages") {
+      this.historiqueMsg = "Retour";
+      this.messageService.getOlderMessages();
+    }
+    else {
+      this.historiqueMsg = "Afficher les anciens messages";
+      this.messageService.startInterval();
+    }
   }
 }
