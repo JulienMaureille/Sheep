@@ -5,16 +5,16 @@
 
 export class CurrentThreadModel {
   private static currentThread = 139;
-  private static _olderPages  = false;
+  private static olderPages = 0;
 
 
   public switchThread(thread: number) {
     CurrentThreadModel.currentThread = thread;
-    CurrentThreadModel._olderPages = false;
+    CurrentThreadModel.olderPages = 0;
   }
 
-  public getMessagesRoute() : string {
-    return CurrentThreadModel.currentThread + "/messages";
+  public getMessagesRoute(): string {
+    return CurrentThreadModel.currentThread + "/messages" + ((CurrentThreadModel.olderPages == 0) ? "" : ("?pages=" + CurrentThreadModel.olderPages));
   }
 
   public getId() {
@@ -22,12 +22,8 @@ export class CurrentThreadModel {
   }
 
 
-  public getOlderPages(){
-    CurrentThreadModel._olderPages = true;
+  public getOlderPages() {
+    CurrentThreadModel.olderPages += 1;
   }
 
-
-  static get olderPages(): boolean {
-    return this._olderPages;
-  }
 }
