@@ -14,6 +14,7 @@ export class MessageComponent implements OnInit {
   @Input() message: MessageModel;
   private text: string[];
 
+
   constructor(private http: Http) {
     this.message = new MessageModel(0, "Hello!");
   }

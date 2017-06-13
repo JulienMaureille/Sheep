@@ -16,7 +16,7 @@ export class MessageFormComponent implements OnInit {
   public historiqueMsg = "Show older messages";
 
   constructor(private messageService: MessageService) {
-    this.message = new MessageModel(1, "Blabla", "anonymous");
+    this.message = new MessageModel(1, "Blabla");
     this.route = new CurrentThreadModel().getMessagesRoute();
   }
 

@@ -9,6 +9,7 @@ import {MessageModel} from "../../models/MessageModel";
 import {ReplaySubject} from "rxjs/ReplaySubject";
 import {CurrentThreadModel} from "../../models/CurrentThreadModel";
 import {AIService} from "../extern/ai/ai.service";
+import {LoginService} from "../login/login.service";
 
 @Injectable()
 export class MessageService {
@@ -30,7 +31,7 @@ export class MessageService {
   public messageList$: ReplaySubject<MessageModel[]>;
   private interval: any;
 
-  constructor(private http: Http, private ai : AIService) {
+  constructor(private http: Http, private ai : AIService, private loginService:LoginService) {
     this.url = URLSERVER;
     this.messageList$ = new ReplaySubject(1);
     this.messageList$.next([new MessageModel()]);
@@ -88,6 +89,9 @@ export class MessageService {
    */
   public sendMessage(route: string, message: MessageModel) {
     const finalUrl = this.url + route;
+
+    message.from = this.loginService.getUser();
+
     let headers = new Headers({'Content-Type': 'application/json'});
     let options = new RequestOptions({headers: headers});
 

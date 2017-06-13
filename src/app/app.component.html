@@ -1,4 +1,6 @@
-<br><div class="container">
+<app-login *ngIf="!isConnected()"></app-login>
+
+<div *ngIf="isConnected()" class="container">
   <div class="row justify-content-md-center">
     <div class="col-md-3 m-3 p-3 card">
       <h1> Channels </h1>
