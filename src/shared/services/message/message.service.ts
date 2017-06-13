@@ -38,7 +38,7 @@ export class MessageService {
 
 
   public startInterval() {
-    this.interval = setInterval(() => (this.getMessages(new CurrentThreadModel().getMessagesRoute())), 300);
+    this.interval = setInterval(() => (this.getMessages(new CurrentThreadModel().getMessagesRoute())), 1000);
   }
 
   /**
@@ -58,7 +58,7 @@ export class MessageService {
       .subscribe((response) => this.extractAndUpdateMessageList(response));
   }
 
-  public getOlderMessages(route : string){
+  public getOlderMessages(route: string) {
     this.getMessages(route);
     clearInterval(this.interval);
   }
@@ -95,8 +95,13 @@ export class MessageService {
     // Plus d'info sur Response ou sur la fonction .json()? si tu utilises Webstorm,
     // fait CTRL + Click pour voir la déclaration et la documentation
     const messageList = response.json() || []; // ExtractMessage: Si response.json() est undefined ou null,
-    // messageList prendra la valeur tableau vide: [];
-    this.messageList$.next(messageList); // On pousse les nouvelles données dans l'attribut messageList$
+    // messageList prendra la valeur tableau vide: []
+    console.log(messageList[messageList.length - 1].id);
+    console.log(CurrentThreadModel.lastMessageId);
+    if (messageList[messageList.length - 1].id > CurrentThreadModel.lastMessageId) {
+      CurrentThreadModel.lastMessageId = messageList[messageList.length - 1].id;
+      this.messageList$.next(messageList); // On pousse les nouvelles données dans l'attribut messageList$
+    }
   }
 
   /**
