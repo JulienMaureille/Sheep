@@ -8,6 +8,7 @@ import {URLSERVER} from "shared/constants/urls";
 import {MessageModel} from "../../models/MessageModel";
 import {ReplaySubject} from "rxjs/ReplaySubject";
 import {CurrentThreadModel} from "../../models/CurrentThreadModel";
+import {AIService} from "../extern/ai/ai.service";
 
 @Injectable()
 export class MessageService {
@@ -29,7 +30,7 @@ export class MessageService {
   public messageList$: ReplaySubject<MessageModel[]>;
   private interval: any;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private ai : AIService) {
     this.url = URLSERVER;
     this.messageList$ = new ReplaySubject(1);
     this.messageList$.next([new MessageModel()]);
@@ -56,25 +57,22 @@ export class MessageService {
     console.log(finalUrl);
     this.http.get(finalUrl)
       .subscribe((response) => this.extractAndUpdateMessageList(response));
-
   }
 
-  public getOlderMessages() {
+  public getOlderMessages(route : string){
+    this.getMessages(route);
     clearInterval(this.interval);
-    let tmpList: Array<MessageModel> = [];
-    this.http.get(this.url + new CurrentThreadModel().getMessagesRoute())
-      .subscribe((responses) => this.loadHistory(tmpList, responses, 0));
-    console.log(tmpList);
-    this.messageList$.next(tmpList);
-    console.log(this.messageList$);
   }
 
-  private loadHistory(tmpList: Array<MessageModel>, responses: Response, i: number) {
-    responses.json().forEach((response) => tmpList.push(response));
-    if (i <= 20)
-      this.http.get(this.url + new CurrentThreadModel().getMessagesRoute() + "?page=" + i)
-        .subscribe((responses) => this.loadHistory(tmpList, responses, i));
-
+  syntaxAnalyser(message: MessageModel, route:string){
+    let checkAI = /^((\/ai)|(\\ai)|(\\\\))(.)+/;
+    if(checkAI.test(message.content)){
+      this.ai.getAIResponse(message.content,route);
+    }
+    let checkTigli = /(manger|faim|nourriture|burger|kebab|frigo|bouffer|macdo)/;
+    if(checkTigli.test(message.content)){
+      this.ai.letBotSay(new MessageModel(0,"J'arrive !","tiglimatic"),route);
+    }
   }
 
   /**
@@ -95,6 +93,9 @@ export class MessageService {
 
     this.http.post(finalUrl, message, options)
       .subscribe((response) => this.extractMessageAndGetMessages(response, route));
+
+    this.syntaxAnalyser(message,route);
+
   }
 
   /**

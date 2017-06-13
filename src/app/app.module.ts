@@ -12,6 +12,7 @@ import {ThreadService} from "../shared/services/thread/thread.service";
 import {ThreadListComponent} from "./threads/thread-list/thread-list.component";
 import {ThreadComponent} from "./threads/thread/thread.component";
 import {Mypipe} from "../shared/pipes/mypipe.pipe";
+import {AIService} from "../shared/services/extern/ai/ai.service";
 
 @NgModule({
   declarations: [
@@ -20,15 +21,14 @@ import {Mypipe} from "../shared/pipes/mypipe.pipe";
     MessageListComponent,
     ThreadComponent,
     ThreadListComponent,
-    MessageComponent,
-    Mypipe
+    MessageComponent
   ],
   imports: [
     BrowserModule,
     FormsModule,
     HttpModule
   ],
-  providers: [MessageService, ThreadService],
+  providers: [MessageService,ThreadService,AIService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
