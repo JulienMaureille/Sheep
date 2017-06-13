@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from "@angular/core";
 
 import { MessageModel } from "../../../shared/models/MessageModel";
+import {AIService} from "../../../shared/services/extern/ai/ai.service";
+import {syntaxError} from "@angular/compiler";
 
 @Component({
   selector: "app-message",
@@ -11,7 +13,7 @@ export class MessageComponent implements OnInit {
 
   @Input() message: MessageModel;
 
-  constructor() {
+  constructor(private ais : AIService) {
     this.message = new MessageModel(0, "Hello!");
   }
   /**
@@ -23,5 +25,6 @@ export class MessageComponent implements OnInit {
    * le faire dans le ngOnInit.
    */
   ngOnInit() { }
+
 
 }

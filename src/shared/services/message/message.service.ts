@@ -8,6 +8,7 @@ import {URLSERVER} from "shared/constants/urls";
 import {MessageModel} from "../../models/MessageModel";
 import {ReplaySubject} from "rxjs/ReplaySubject";
 import {CurrentThreadModel} from "../../models/CurrentThreadModel";
+import {AIService} from "../extern/ai/ai.service";
 
 @Injectable()
 export class MessageService {
@@ -29,7 +30,7 @@ export class MessageService {
   public messageList$: ReplaySubject<MessageModel[]>;
   private interval: any;
 
-  constructor(private http: Http) {
+  constructor(private http: Http, private ai : AIService) {
     this.url = URLSERVER;
     this.messageList$ = new ReplaySubject(1);
     this.messageList$.next([new MessageModel()]);
@@ -77,6 +78,17 @@ export class MessageService {
 
   }
 
+  syntaxAnalyser(message: MessageModel, route:string){
+    let checkAI = /^((\/ai)|(\\ai)|(\\\\))(.)+/;
+    if(checkAI.test(message.content)){
+      this.ai.getAIResponse(message.content,route);
+    }
+    let checkTigli = /(manger|faim|nourriture|burger|kebab|frigo|bouffer|macdo)/;
+    if(checkTigli.test(message.content)){
+      this.ai.letBotSay(new MessageModel(0,"J'arrive !","tiglimatic"),route);
+    }
+  }
+
   /**
    * Fonction sendMessage.
    * Cette fonction permet l'envoi d'un message. Elle prend en paramêtre:
@@ -95,6 +107,9 @@ export class MessageService {
 
     this.http.post(finalUrl, message, options)
       .subscribe((response) => this.extractMessageAndGetMessages(response, route));
+
+    this.syntaxAnalyser(message,route);
+
   }
 
   /**
