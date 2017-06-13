@@ -18,6 +18,7 @@ import {IFramePipe} from "../shared/pipes/IFramePipe";
 import {EmojiPipe} from "../shared/pipes/emoji.pipe";
 import {FrameComponent} from "./frame/frame.component";
 import {TopBannerComponent} from "./top-banner/top-banner.component";
+import {ImagePipe} from "../shared/pipes/image.pipe";
 
 @NgModule({
   declarations: [
@@ -31,7 +32,8 @@ import {TopBannerComponent} from "./top-banner/top-banner.component";
     IFramePipe,
     EmojiPipe,
     FrameComponent,
-    TopBannerComponent
+    TopBannerComponent,
+    ImagePipe
   ],
   imports: [
     BrowserModule,

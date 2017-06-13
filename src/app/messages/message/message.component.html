@@ -3,5 +3,5 @@
   <div class="content mb-3" *ngIf="url; then thenFrame; else thenMsg"></div>
 
   <ng-template #thenFrame><app-frame [message]="message"></app-frame></ng-template>
-  <ng-template #thenMsg ><div [innerHTML]="message.content | EmojiPipe"></div></ng-template>
+  <ng-template #thenMsg ><div [innerHTML]="message.content | EmojiPipe  "></div></ng-template>
 
