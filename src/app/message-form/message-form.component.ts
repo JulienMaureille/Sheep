@@ -34,13 +34,8 @@ export class MessageFormComponent implements OnInit {
   }
 
   displayOlderMessages() {
-    if (this.historiqueMsg == "Afficher les anciens messages") {
-      this.historiqueMsg = "Retour";
-      this.messageService.getOlderMessages(this.route);
-    }
-    else {
-      this.historiqueMsg = "Afficher les anciens messages";
-      this.messageService.startInterval();
-    }
+    let currentThread = new CurrentThreadModel();
+    currentThread.getOlderPages();
+    this.messageService.getOlderMessages(currentThread.getMessagesRoute());
   }
 }

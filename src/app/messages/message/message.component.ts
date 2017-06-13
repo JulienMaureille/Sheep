@@ -1,9 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 
 import {MessageModel} from "../../../shared/models/MessageModel";
-import { MessageModel } from "../../../shared/models/MessageModel";
 import {Http} from "@angular/http";
-import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: "app-message",
@@ -14,7 +12,7 @@ export class MessageComponent implements OnInit {
 
   @Input() message: MessageModel;
   private text: string[];
-  public url : boolean;
+  public url: boolean;
 
   constructor(private http: Http) {
     this.message = new MessageModel(0, "Hello!");
@@ -28,14 +26,19 @@ export class MessageComponent implements OnInit {
    * pas dans le constructeur. Si vous souhaitez manipuler votre message lors du chargement du composant, vous devez
    * le faire dans le ngOnInit.
    */
-    const pattern = new RegExp("https://.*[^\t\n ]*");
-    this.text = pattern.exec(this.message.content);
+
+  ngOnInit() {
     if (this.message.content.match(".*http.*")) {
       this.url = true;
     }
+    const pattern = new RegExp("https://.*[^\t\n ]*");
+    this.text = pattern.exec(this.message.content);
 
-  replacer (substring: string, ...args: any[] ) {
-    return this.http.get(substring).map ( (reponse) => { return reponse.headers.get("Content-Type").toString; });
+  }
 
+  private replacer(substring: string, ...args: any[]) {
+    return this.http.get(substring).map((reponse) => {
+      return reponse.headers.get("Content-Type").toString;
+    });
   }
 }

@@ -25,7 +25,7 @@ import {FrameComponent} from "./frame/frame.component";
     ThreadListComponent,
     MessageComponent,
     IFramePipe,
-    FrameComponent
+    FrameComponent,
     MessageComponent
   ],
   imports: [

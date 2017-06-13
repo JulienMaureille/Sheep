@@ -25,11 +25,7 @@ export class CurrentThreadModel {
 
 
   public getOlderPages(){
-    CurrentThreadModel._olderPages = true;
+    CurrentThreadModel.olderPages ++;
   }
 
-
-  static get olderPages(): boolean {
-    return this._olderPages;
-  }
 }
