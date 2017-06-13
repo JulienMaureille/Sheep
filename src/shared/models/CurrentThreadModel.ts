@@ -5,12 +5,14 @@
 
 export class CurrentThreadModel {
   private static currentThread = 139;
-  private static _olderPages  = false;
+  private static olderPages = 0;
+  public static lastMessageId = -1;
 
 
   public switchThread(thread: number) {
     CurrentThreadModel.currentThread = thread;
-    CurrentThreadModel._olderPages = false;
+    CurrentThreadModel.olderPages = 0;
+    CurrentThreadModel.lastMessageId = -1;
   }
 
   public getMessagesRoute() : string {
@@ -23,11 +25,7 @@ export class CurrentThreadModel {
 
 
   public getOlderPages(){
-    CurrentThreadModel._olderPages = true;
+    CurrentThreadModel.olderPages ++;
   }
 
-
-  static get olderPages(): boolean {
-    return this._olderPages;
-  }
 }

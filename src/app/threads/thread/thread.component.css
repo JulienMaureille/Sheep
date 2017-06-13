@@ -6,3 +6,8 @@ a{
     font-size: 18px;
     color: #434343;
 }
+#time{
+  font-size: 15px;
+  font-weight: lighter;
+  color: chocolate;
+}
