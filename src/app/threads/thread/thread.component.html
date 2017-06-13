@@ -2,5 +2,6 @@
     <button type="button" class="btn btn-danger btn-sm" name="removeThread" (click)="removeThread()">x</button>
     <a *ngIf="!isCurrent(); else elseBlock" href="#" (click)="changeThread()">{{thread.name}} </a>
     <ng-template #elseBlock><span class="selected">{{thread.name}}
-    {{thread.createdAt}}</span></ng-template>
+      <br>
+      <span id="time">Créé le {{thread.createdAt | date:'dd-MM-yyyy à HH:mm:ss'}}</span></span></ng-template>
 </p>

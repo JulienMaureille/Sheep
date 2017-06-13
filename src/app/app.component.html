@@ -11,8 +11,12 @@
     </div>
 
     <div class="col-md-5 m-3 p-3 card ">
-      <h1> {{title}} </h1>
-      <app-message-list #cDiv></app-message-list>
+      <nav class="navbar navbar-light bg-faded2">
+        <a class="navbar-brand2" >
+          <p> <img id="imgchat" src="/assets/chat.jpg" width="50" height="50"  alt="">
+            <span id="txtchat">{{title}}</span> </p>
+        </a>
+      </nav>
       <app-message-form></app-message-form>
     </div>
 
