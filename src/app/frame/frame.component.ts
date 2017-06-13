@@ -1,6 +1,7 @@
 import {Component, Input, OnInit} from "@angular/core";
 import {MessageModel} from "../../shared/models/MessageModel";
 import {DomSanitizer, SafeResourceUrl} from "@angular/platform-browser";
+import {Http} from "@angular/http";
 
 @Component({
   selector: "app-frame",
@@ -12,7 +13,7 @@ export class FrameComponent implements OnInit {
   @Input() message: MessageModel;
   public trustURL: SafeResourceUrl;
 
-  constructor(private sanitizer: DomSanitizer) {
+  constructor(private sanitizer: DomSanitizer, private http : Http) {
 
   }
 
@@ -25,9 +26,18 @@ export class FrameComponent implements OnInit {
    * le faire dans le ngOnInit.
    */
   ngOnInit() {
-    console.log("content : " + this.message.content);
-    console.log("https://www.youtube.com/embed/" + this.message.content.match("v=[^&]*")[0].split("=")[1]);
-    this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl("https://www.youtube.com/embed/" + this.message.content.match("v=[^&]*")[0].split("=")[1]);
+    let url = this.message.content;
+
+    if (url.match("youtube")) {
+      this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl(
+        "https://www.youtube.com/embed/" + this.message.content.match("v=[^&]*")[0].split("=")[1]);
+    }
+    else if (url.match("instagram")){
+      let insta = new URL(url);
+      this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl(insta.hostname + insta.pathname + "embed");
+    }
+    else
+      this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
 
 }

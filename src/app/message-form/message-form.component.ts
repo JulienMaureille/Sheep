@@ -36,7 +36,7 @@ export class MessageFormComponent implements OnInit {
   }
 
   displayOlderMessages() {
-    const currentThread = new CurrentThreadModel();
+    let currentThread = new CurrentThreadModel();
     currentThread.getOlderPages();
     this.messageService.getOlderMessages(currentThread.getMessagesRoute());
   }

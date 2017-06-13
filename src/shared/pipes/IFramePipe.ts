@@ -8,7 +8,15 @@ export class IFramePipe implements PipeTransform {
   }
 
   transform(url: string) {
-    return "https://www.youtube.com/embed/"+ url.match("v=[^&]*")[0].split("=")[1];
+    const youtube = new RegExp("youtube");
+    const insta = new RegExp("instagram");
+    if (url.match(youtube)) {
+      return "https://www.youtube.com/embed/" + url.match("v=[^&]*")[0].split("=")[1];
+    }
+    else if (url.match(insta)) {
+
+    }
+    return url;
   }
 
 }

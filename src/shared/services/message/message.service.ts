@@ -61,6 +61,7 @@ export class MessageService {
   }
 
   public getOlderMessages(route: string) {
+    CurrentThreadModel.lastMessageId = -1;
     this.getMessages(route);
     clearInterval(this.interval);
   }
@@ -115,7 +116,9 @@ export class MessageService {
     // fait CTRL + Click pour voir la déclaration et la documentation
     const messageList = response.json() || []; // ExtractMessage: Si response.json() est undefined ou null,
     // messageList prendra la valeur tableau vide: []
+    console.log(CurrentThreadModel.lastMessageId);
     if (messageList[messageList.length - 1].id > CurrentThreadModel.lastMessageId) {
+      console.log(response.json());
       CurrentThreadModel.lastMessageId = messageList[messageList.length - 1].id;
       this.messageList$.next(messageList); // On pousse les nouvelles données dans l'attribut messageList$
     }
