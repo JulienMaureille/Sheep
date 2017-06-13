@@ -14,9 +14,11 @@ export class MessageFormComponent implements OnInit {
   public message: MessageModel;
   private route: string;
   public historiqueMsg = "Show older messages";
+  public defaulttxt = "Insérez votre message ici";
+  public defaultpseudo = "Insérez votre pseudo ici";
 
   constructor(private messageService: MessageService) {
-    this.message = new MessageModel(1, "Blabla", "anonymous");
+    this.message = new MessageModel(1, this.defaulttxt, this.defaultpseudo);
     this.route = new CurrentThreadModel().getMessagesRoute();
   }
 
@@ -37,5 +39,17 @@ export class MessageFormComponent implements OnInit {
     let currentThread = new CurrentThreadModel();
     currentThread.getOlderPages();
     this.messageService.getOlderMessages(currentThread.getMessagesRoute());
+  }
+
+  deleteText(){
+    if (this.message.content === this.defaulttxt){
+      this.message.clearContent();
+    }
+  }
+
+  deletePseudo() {
+    if (this.message.from === this.defaultpseudo){
+      this.message.clearPseudo();
+    }
   }
 }
