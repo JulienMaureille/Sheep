@@ -14,9 +14,10 @@ export class MessageFormComponent implements OnInit {
   public message: MessageModel;
   private route: string;
   public historiqueMsg = "Show older messages";
+  private defaulttxt;
 
   constructor(private messageService: MessageService) {
-    this.message = new MessageModel(1, "Blabla", "anonymous");
+    this.message = new MessageModel(1, this.defaulttxt, "anonymous");
     this.route = new CurrentThreadModel().getMessagesRoute();
   }
 
@@ -45,9 +46,4 @@ export class MessageFormComponent implements OnInit {
     }
   }
 
-  deletePseudo() {
-    if (this.message.from === this.defaultpseudo){
-      this.message.clearPseudo();
-    }
-  }
 }

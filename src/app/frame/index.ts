@@ -1,2 +1,2 @@
-export {MessageComponent} from "./frame.component";
-export {MessageModule} from "./frame.module";
+export {FrameComponent} from "./frame.component";
+export {FrameModule} from "./frame.module";
