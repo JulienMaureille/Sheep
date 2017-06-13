@@ -11,7 +11,7 @@ import { MessageService } from "../shared/services/message/message.service";
 import {ThreadService} from "../shared/services/thread/thread.service";
 import {ThreadListComponent} from "./threads/thread-list/thread-list.component";
 import {ThreadComponent} from "./threads/thread/thread.component";
-import {Mypipe} from "../shared/pipes/mypipe.pipe";
+import {EmojiPipe} from "../shared/pipes/emoji.pipe";
 import {AIService} from "../shared/services/extern/ai/ai.service";
 import {IFramePipe} from "../shared/pipes/IFramePipe";
 import {FrameComponent} from "./frame/frame.component";
@@ -26,7 +26,8 @@ import {FrameComponent} from "./frame/frame.component";
     MessageComponent,
     IFramePipe,
     FrameComponent,
-    MessageComponent
+    MessageComponent,
+    EmojiPipe
   ],
   imports: [
     BrowserModule,
