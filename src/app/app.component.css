@@ -9,13 +9,13 @@ app-message-list{
   overflow-y: auto;
 }
 
-#imgchannel,#imgchat{
+#imgchannel,#imgchat,#imguser{
   vertical-align: middle;
   margin-left: auto;
   margin-right: auto;
 }
 
-#txtchannel,#txtchat{
+#txtchannel,#txtchat,#txtuser{
   font-size: 25px;
   margin-left: auto;
   margin-right: auto;
