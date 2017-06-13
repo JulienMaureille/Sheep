@@ -1,13 +1,30 @@
 a{
-    font-size: 13px;
-    color: #3764b5;
+    font-size: 16px;
+    color: #3e3e3e;
+}
+a.before{
+  content:"#";
+  color: #7a7a7a;
+  font-weight: bold;
+}
+a:hover{
+  text-decoration: none;
+  font-size: 18px;
 }
 .selected{
     font-size: 18px;
     color: #434343;
+    font-weight: 600;
 }
 #time{
   font-size: 12px;
-  font-weight: lighter;
-  color: chocolate;
+  font-weight: normal;
+  color: #7a7a7a;
+}
+
+.thread{
+  margin:5px 10px;
+  border-bottom: 1px solid #ddd;
+  padding-bottom:10px;
+  padding-top:10px;
 }

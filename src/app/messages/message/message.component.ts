@@ -37,6 +37,10 @@ export class MessageComponent implements OnInit {
 
   }
 
+  private isOnlyEmoji(){
+    return this.message.content.match("([:;][D)op])|<3|xd");
+  }
+
   private replacer(substring: string, ...args: any[]) {
     return this.http.get(substring).map((reponse) => {
       return reponse.headers.get("Content-Type").toString;
