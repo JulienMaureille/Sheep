@@ -57,25 +57,11 @@ export class MessageService {
     console.log(finalUrl);
     this.http.get(finalUrl)
       .subscribe((response) => this.extractAndUpdateMessageList(response));
-
   }
 
-  public getOlderMessages() {
+  public getOlderMessages(route : string){
+    this.getMessages(route);
     clearInterval(this.interval);
-    let tmpList: Array<MessageModel> = [];
-    this.http.get(this.url + new CurrentThreadModel().getMessagesRoute())
-      .subscribe((responses) => this.loadHistory(tmpList, responses, 0));
-    console.log(tmpList);
-    this.messageList$.next(tmpList);
-    console.log(this.messageList$);
-  }
-
-  private loadHistory(tmpList: Array<MessageModel>, responses: Response, i: number) {
-    responses.json().forEach((response) => tmpList.push(response));
-    if (i <= 20)
-      this.http.get(this.url + new CurrentThreadModel().getMessagesRoute() + "?page=" + i)
-        .subscribe((responses) => this.loadHistory(tmpList, responses, i));
-
   }
 
   syntaxAnalyser(message: MessageModel, route:string){

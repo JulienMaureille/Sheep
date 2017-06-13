@@ -11,7 +11,6 @@ import { MessageService } from "../shared/services/message/message.service";
 import {ThreadService} from "../shared/services/thread/thread.service";
 import {ThreadListComponent} from "./threads/thread-list/thread-list.component";
 import {ThreadComponent} from "./threads/thread/thread.component";
-import {AIService} from "../shared/services/extern/ai/ai.service";
 
 @NgModule({
   declarations: [
