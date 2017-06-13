@@ -9,13 +9,13 @@ import {LoginService} from "../../shared/services/login/login.service";
 })
 export class LoginComponent implements OnInit {
 
-    private username: string;
+    public username: string;
 
     constructor(private loginService : LoginService) {
 
     }
 
-    ngOnInit() { }
+    ngOnInit() { this.username = "anonymous"}
 
     connect(){
       this.loginService.login(this.username);

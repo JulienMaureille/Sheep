@@ -17,6 +17,12 @@ export class TopBannerComponent implements OnInit {
 
     ngOnInit() { }
 
+    private getUsername(){
+      return this.loginService.getUser();
+    }
 
+    private logoff(){
+      this.loginService.logoff();
+    }
 
 }

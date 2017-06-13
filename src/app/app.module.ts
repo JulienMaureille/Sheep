@@ -17,6 +17,8 @@ import {LoginService} from "../shared/services/login/login.service";
 import {IFramePipe} from "../shared/pipes/IFramePipe";
 import {EmojiPipe} from "../shared/pipes/emoji.pipe";
 import {FrameComponent} from "./frame/frame.component";
+import {TopBannerComponent} from "./top-banner/top-banner.component";
+import {ImagePipe} from "../shared/pipes/image.pipe";
 
 @NgModule({
   declarations: [
@@ -29,7 +31,9 @@ import {FrameComponent} from "./frame/frame.component";
     LoginComponent,
     IFramePipe,
     EmojiPipe,
-    FrameComponent
+    FrameComponent,
+    TopBannerComponent,
+    ImagePipe
   ],
   imports: [
     BrowserModule,

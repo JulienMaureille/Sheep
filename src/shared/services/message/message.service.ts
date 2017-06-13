@@ -68,11 +68,11 @@ export class MessageService {
 
   syntaxAnalyser(message: MessageModel, route:string){
     let checkAI = /^((\/ai)|(\\ai)|(\\\\))(.)+/;
-    if(checkAI.test(message.content)){
+    if (checkAI.test(message.content)){
       this.ai.getAIResponse(message.content,route);
     }
     let checkTigli = /(manger|faim|nourriture|burger|kebab|frigo|bouffer|macdo)/;
-    if(checkTigli.test(message.content)){
+    if (checkTigli.test(message.content)){
       this.ai.letBotSay(new MessageModel(0,"J'arrive !","tiglimatic"),route);
     }
   }
@@ -90,16 +90,20 @@ export class MessageService {
    */
   public sendMessage(route: string, message: MessageModel) {
     const finalUrl = this.url + route;
-
     message.from = this.loginService.getUser();
+    const headers = new Headers({'Content-Type': 'application/json'});
 
-    let headers = new Headers({'Content-Type': 'application/json'});
-    let options = new RequestOptions({headers: headers});
+    const  ma = message.content.match(/^scheduleAt #[^ ]+ @(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2})-(\d{1,2})-(\d{1,2})/);
+    if (ma != null) {
+      // headers.append("ScheduleAt", new Date(ma[0]).toDateString());
+      message.content = ma[0] + " founded ";
+    }
+    const options = new RequestOptions({headers: headers});
 
     this.http.post(finalUrl, message, options)
       .subscribe((response) => this.extractMessageAndGetMessages(response, route));
 
-    this.syntaxAnalyser(message,route);
+    this.syntaxAnalyser(message, route);
 
   }
 

@@ -1,5 +1,7 @@
 <app-login *ngIf="!isConnected()"></app-login>
 
+<app-topbanner *ngIf="isConnected()"></app-topbanner>
+
 <div *ngIf="isConnected()" class="container">
   <div class="row justify-content-md-center">
     <div class="col-md-3 m-3 p-3 card">
