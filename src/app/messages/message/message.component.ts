@@ -1,6 +1,9 @@
 import {Component, Input, OnInit} from "@angular/core";
 
 import {MessageModel} from "../../../shared/models/MessageModel";
+import { MessageModel } from "../../../shared/models/MessageModel";
+import {Http} from "@angular/http";
+import {Observable} from "rxjs/Observable";
 
 @Component({
   selector: "app-message",
@@ -10,10 +13,10 @@ import {MessageModel} from "../../../shared/models/MessageModel";
 export class MessageComponent implements OnInit {
 
   @Input() message: MessageModel;
-  content: any;
+  private text: string[];
   public url : boolean;
 
-  constructor() {
+  constructor(private http: Http) {
     this.message = new MessageModel(0, "Hello!");
   }
 
@@ -25,10 +28,14 @@ export class MessageComponent implements OnInit {
    * pas dans le constructeur. Si vous souhaitez manipuler votre message lors du chargement du composant, vous devez
    * le faire dans le ngOnInit.
    */
-  ngOnInit() {
+    const pattern = new RegExp("https://.*[^\t\n ]*");
+    this.text = pattern.exec(this.message.content);
     if (this.message.content.match(".*http.*")) {
       this.url = true;
     }
-  }
 
+  replacer (substring: string, ...args: any[] ) {
+    return this.http.get(substring).map ( (reponse) => { return reponse.headers.get("Content-Type").toString; });
+
+  }
 }

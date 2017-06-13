@@ -13,6 +13,7 @@ export class MessageFormComponent implements OnInit {
 
   public message: MessageModel;
   private route: string;
+  public historiqueMsg = "Show older messages";
 
   constructor(private messageService: MessageService) {
     this.message = new MessageModel(1, "Blabla", "anonymous");
@@ -33,8 +34,13 @@ export class MessageFormComponent implements OnInit {
   }
 
   displayOlderMessages() {
-    let currentThread = new CurrentThreadModel();
-    currentThread.getOlderPages();
-    this.messageService.getOlderMessages(currentThread.getMessagesRoute());
+    if (this.historiqueMsg == "Afficher les anciens messages") {
+      this.historiqueMsg = "Retour";
+      this.messageService.getOlderMessages(this.route);
+    }
+    else {
+      this.historiqueMsg = "Afficher les anciens messages";
+      this.messageService.startInterval();
+    }
   }
 }
