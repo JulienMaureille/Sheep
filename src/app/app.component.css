@@ -9,4 +9,15 @@ app-message-list{
   overflow-y: auto;
 }
 
+#imgchannel{
+  vertical-align: middle;
+}
 
+#txtchannel{
+  font-size: 20px;
+}
+
+
+.navbar{
+  background-color: #ffffff;
+}

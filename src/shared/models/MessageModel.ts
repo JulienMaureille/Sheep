@@ -44,4 +44,11 @@ export class MessageModel {
     this.threadId =  threadId;
   }
 
+  clearContent() {
+    this.content = "";
+  }
+
+  clearPseudo() {
+    this.from = "";
+  }
 }
