@@ -34,7 +34,7 @@ export class MessageComponent implements OnInit {
     const twitter = new RegExp("http(s)?://(www\.)?(twitter\.com)/[^\t\n\./]+/status/[^\t\n\./]+");
     const re = new RegExp("(" + youtube.source + ")|(" + insta.source + ")|(" + twitter.source + ")");
 
-    if (this.message.content.match(re)) {
+    if (this.message.content && this.message.content.match(re)) {
       console.log(this.message.content);
       this.url = true;
     }

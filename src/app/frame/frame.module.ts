@@ -2,10 +2,12 @@ import { CommonModule } from "@angular/common";
 import { NgModule } from "@angular/core";
 
 import { FrameComponent} from "./frame.component";
+import {IframeHeightDirective} from "../../shared/directives/iframe.directive";
 
 @NgModule({
   declarations: [
-    FrameComponent
+    FrameComponent,
+    IframeHeightDirective
   ],
   imports: [
     CommonModule
@@ -14,3 +16,4 @@ import { FrameComponent} from "./frame.component";
   providers: []
 })
 export class FrameModule { }
+

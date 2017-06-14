@@ -19,6 +19,7 @@ import {FrameComponent} from "./frame/frame.component";
 import {TopBannerComponent} from "./top-banner/top-banner.component";
 import {ImagePipe} from "../shared/pipes/image.pipe";
 import {LinkPipe} from "../shared/pipes/link.pipe";
+import {IframeHeightDirective} from "../shared/directives/iframe.directive";
 
 
 @NgModule({
@@ -34,7 +35,8 @@ import {LinkPipe} from "../shared/pipes/link.pipe";
     FrameComponent,
     TopBannerComponent,
     ImagePipe,
-    LinkPipe
+    LinkPipe,
+    IframeHeightDirective
   ],
   imports: [
     BrowserModule,

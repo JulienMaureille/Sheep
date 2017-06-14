@@ -9,9 +9,7 @@ export class LinkPipe implements PipeTransform {
   }
 
   replacer(substring: string, ...args: any[]) {
-    const link = "<a href=\"" + substring + "\">" + substring + "</a>";
-    console.log(link);
-    return link;
+    return "<a href=\"" + substring + "\">" + substring + "</a>";
   }
 
 }
