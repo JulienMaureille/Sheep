@@ -1,6 +1,8 @@
 <a *ngIf="isVoid(); else elseBlock" >
-  <div class="alert alert-success" id="validpseudo">
-    <strong>Pseudo valide</strong> Le pseudo est valide, connectez vous!
+  <div id="conteneurtxt">
+    <img id="nomsg" src="../../../assets/nomsg.jpg">
+    <br>
+    <span id="msgnomsg">Il n'y a aucun message... Soyer le premier à poster un message sur ce channel!</span>
   </div>
 </a>
 <ng-template #elseBlock>
