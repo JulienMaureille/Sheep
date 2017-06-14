@@ -29,17 +29,18 @@ export class MessageComponent implements OnInit {
    */
 
   ngOnInit() {
-    if (this.message.content.match(".*http.*")) {
+    if (this.message.content.match(".*http.*") && new URL(this.message.content).hostname.match(".*(youtube|instagram|twitter).*")) {
+      console.log(this.message.content);
       this.url = true;
     }
-    const pattern = new RegExp("https://.*[^\t\n ]*");
-    this.text = pattern.exec(this.message.content);
+    // const pattern = new RegExp("https://.*[^\t\n ]*");
+    // this.text = pattern.exec(this.message.content);
 
   }
 
-  private replacer(substring: string, ...args: any[]) {
-    return this.http.get(substring).map((reponse) => {
-      return reponse.headers.get("Content-Type").toString;
-    });
-  }
+  // private replacer(substring: string, ...args: any[]) {
+  //   return this.http.get(substring).map((reponse) => {
+  //     return reponse.headers.get("Content-Type").toString;
+  //   });
+  // }
 }

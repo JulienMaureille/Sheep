@@ -36,6 +36,9 @@ export class FrameComponent implements OnInit {
       let insta = new URL(url);
       this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl(insta.hostname + insta.pathname + "embed");
     }
+    else if (url.match("twitter")){
+      this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl("http://twitframe.com/show?url=" + url);
+    }
     else
       this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl(url);
   }
