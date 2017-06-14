@@ -1,12 +1,10 @@
 import {Pipe, PipeTransform} from "@angular/core";
-import {Http} from "@angular/http";
-import {DomSanitizer} from "@angular/platform-browser";
 
 @Pipe({name: "EmojiPipe"})
 export class EmojiPipe implements PipeTransform {
 
 
-  constructor(private sanitizer : DomSanitizer) {
+  constructor() {
   }
 
   transform(value: string) {
@@ -34,7 +32,7 @@ export class EmojiPipe implements PipeTransform {
         return "&#128559;";
       case  "xd":
         return "&#128514";
-      ;
+        ;
     }
   }
 

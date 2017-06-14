@@ -31,9 +31,9 @@ export class MessageService {
   public messageList$: ReplaySubject<MessageModel[]>;
   private interval: any;
 
-  constructor(private http: Http, private ai : AIService, private loginService:LoginService) {
+  constructor(private http: Http, private ai: AIService, private loginService: LoginService) {
     this.url = URLSERVER;
-    this.messageList$ = new ReplaySubject(1);
+    this.messageList$ = new ReplaySubject(20);
     this.messageList$.next([new MessageModel()]);
     this.startInterval();
   }
@@ -61,18 +61,19 @@ export class MessageService {
   }
 
   public getOlderMessages(route: string) {
+    CurrentThreadModel.lastMessageId = -1;
     this.getMessages(route);
     clearInterval(this.interval);
   }
 
-  syntaxAnalyser(message: MessageModel, route:string){
-    let checkAI = /^((\/ai)|(\\ai))( .)+/;
-    if (checkAI.test(message.content)){
-      this.ai.getAIResponse(message.content,route);
+  syntaxAnalyser(message: MessageModel, route: string) {
+    const checkAI = /^((\/ai)|(\\ai))( .)+/;
+    if (checkAI.test(message.content)) {
+      this.ai.getAIResponse(message.content, route);
     }
-    let checkDirect = /(jacques)/;
-    if (checkDirect.test(message.content)){
-      this.ai.letBotSay(new MessageModel(0,"CHIRAC","bot"),route);
+    const checkDirect = /(jacques)/;
+    if (checkDirect.test(message.content)) {
+      this.ai.letBotSay(new MessageModel(0, "CHIRAC", "bot"), route);
     }
   }
 
@@ -90,9 +91,9 @@ export class MessageService {
   public sendMessage(route: string, message: MessageModel) {
     const finalUrl = this.url + route;
     message.from = this.loginService.getUser();
-    const headers = new Headers({'Content-Type': 'application/json'});
+    const headers = new Headers({"Content-Type": "application/json"});
 
-    const  ma = message.content.match(/^scheduleAt #[^ ]+ @(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2})-(\d{1,2})-(\d{1,2})/);
+    const ma = message.content.match(/^scheduleAt #[^ ]+ @(\d{4})-(\d{1,2})-(\d{1,2}) (\d{1,2})-(\d{1,2})-(\d{1,2})/);
     if (ma != null) {
       // headers.append("ScheduleAt", new Date(ma[0]).toDateString());
       message.content = ma[0] + " founded ";
@@ -119,7 +120,10 @@ export class MessageService {
     // fait CTRL + Click pour voir la déclaration et la documentation
     const messageList = response.json() || []; // ExtractMessage: Si response.json() est undefined ou null,
     // messageList prendra la valeur tableau vide: []
+    console.log(CurrentThreadModel.lastMessageId);
+
     if (messageList[messageList.length - 1].id > CurrentThreadModel.lastMessageId) {
+      console.log(response.json());
       CurrentThreadModel.lastMessageId = messageList[messageList.length - 1].id;
       this.messageList$.next(messageList); // On pousse les nouvelles données dans l'attribut messageList$
     }
@@ -137,8 +141,9 @@ export class MessageService {
    */
   private extractMessageAndGetMessages(response: Response, route: string): MessageModel {
     this.getMessages(route);
-    let responseBody = response.json();
+    const responseBody = response.json();
     return new MessageModel(responseBody.id, responseBody.content, responseBody.from, responseBody.createdAt,
-      responseBody.updatedAt, responseBody.threadId); // A remplacer ! On retourne ici un messageModel vide seulement pour que Typescript ne lève pas d'erreur !
+      responseBody.updatedAt, responseBody.threadId);
+    // A remplacer ! On retourne ici un messageModel vide seulement pour que Typescript ne lève pas d'erreur !
   }
 }

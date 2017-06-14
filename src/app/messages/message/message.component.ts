@@ -29,7 +29,8 @@ export class MessageComponent implements OnInit {
    */
 
   ngOnInit() {
-    if (this.message.content.match(".*http.*")) {
+    if (this.message.content.match(".*http.*") && new URL(this.message.content).hostname.match(".*(youtube|instagram|twitter).*")) {
+      console.log(this.message.content);
       this.url = true;
     }
     const pattern = new RegExp("https://.*[^\t\n ]*");
@@ -37,7 +38,7 @@ export class MessageComponent implements OnInit {
 
   }
 
-  private isOnlyEmoji(){
+  private isOnlyEmoji() {
     return this.message.content.match("([:;][D)op])|<3|xd");
   }
 

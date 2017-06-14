@@ -15,8 +15,9 @@ export class CurrentThreadModel {
     CurrentThreadModel.lastMessageId = -1;
   }
 
-  public getMessagesRoute() : string {
-    return CurrentThreadModel.currentThread + "/messages";
+  public getMessagesRoute(): string {
+    return CurrentThreadModel.currentThread + "/messages" +
+      ((CurrentThreadModel.olderPages === 0) ? "" : ("?page=" + CurrentThreadModel.olderPages));
   }
 
   public getId() {
@@ -24,8 +25,8 @@ export class CurrentThreadModel {
   }
 
 
-  public getOlderPages(){
-    CurrentThreadModel.olderPages ++;
+  public getOlderPages() {
+    CurrentThreadModel.olderPages += 1;
   }
 
 }
