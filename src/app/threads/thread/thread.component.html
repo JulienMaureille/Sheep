@@ -2,10 +2,19 @@
     <a *ngIf="!isCurrent(); else elseBlock" href="#" (click)="changeThread()">{{thread.name}} </a>
     <ng-template #elseBlock><span class="selected">{{thread.name}}</span>
     <div>
-      <button type="button" class="btn btn-danger btn-sm" name="removeThread" (click)="removeThread()">x</button>
-      <span id="time">Created on {{thread.createdAt | date:'dd-MM-yyyy'}}</span>
+      <button type="button" class="btn btn-danger btn-sm" name="removeThread" (click)="removeThread()">Supprimer le channel</button>
+      <br>
+      <div id="timer">
+      <img src="../../../assets/icone-horloge.svg">
+      Created on {{thread.createdAt | date:'dd-MM-yyyy,HH:mm:ss'}}
+      </div>
+      <br>
+      <div id="timer2">
+        <img src="../../../assets/msg.png">
+        Last Message : {{thread.updatedAt | date:'dd-MM-yyyy,HH:mm:ss'}}
+      </div>
+      <br>
     </div>
     </ng-template>
 
 </div>
-

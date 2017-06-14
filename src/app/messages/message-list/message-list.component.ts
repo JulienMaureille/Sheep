@@ -35,4 +35,8 @@ export class MessageListComponent implements OnInit {
     this.messageList = messages.reverse();
   }
 
+  isVoid() {
+    return this.messageList.length === 0;
+  }
+
 }

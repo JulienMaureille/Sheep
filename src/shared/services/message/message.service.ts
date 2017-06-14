@@ -121,7 +121,6 @@ export class MessageService {
     const messageList = response.json() || []; // ExtractMessage: Si response.json() est undefined ou null,
     // messageList prendra la valeur tableau vide: []
     console.log(CurrentThreadModel.lastMessageId);
-
     if (messageList[messageList.length - 1].id > CurrentThreadModel.lastMessageId) {
       console.log(response.json());
       CurrentThreadModel.lastMessageId = messageList[messageList.length - 1].id;

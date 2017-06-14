@@ -1,6 +1,14 @@
-<!-- On boucle sur tous les messages de notre liste de messages stockés dans messageList -->
-<div *ngFor="let currentMessage of messageList">
-  <!--CurrentMessage est le message courant dans la boucle -->
-  <!--On donne notre message courant en Input (en entrée, parametre) du composant Message qui va lui l'afficher.-->
-  <app-message [message]="currentMessage"></app-message>
-</div>
+<a *ngIf="isVoid(); else elseBlock" >
+  <div class="alert alert-success" id="validpseudo">
+    <strong>Pseudo valide</strong> Le pseudo est valide, connectez vous!
+  </div>
+</a>
+<ng-template #elseBlock>
+  <!-- On boucle sur tous les messages de notre liste de messages stockés dans messageList -->
+  <div *ngFor="let currentMessage of messageList">
+    <!--CurrentMessage est le message courant dans la boucle -->
+    <!--On donne notre message courant en Input (en entrée, parametre) du composant Message qui va lui l'afficher.-->
+    <app-message [message]="currentMessage"></app-message>
+  </div>
+</ng-template>
+
