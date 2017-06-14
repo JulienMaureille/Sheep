@@ -67,13 +67,13 @@ export class MessageService {
   }
 
   syntaxAnalyser(message: MessageModel, route:string){
-    let checkAI = /^((\/ai)|(\\ai)|(\\\\))(.)+/;
+    let checkAI = /^((\/ai)|(\\ai))( .)+/;
     if (checkAI.test(message.content)){
       this.ai.getAIResponse(message.content,route);
     }
-    let checkTigli = /(manger|faim|nourriture|burger|kebab|frigo|bouffer|macdo)/;
-    if (checkTigli.test(message.content)){
-      this.ai.letBotSay(new MessageModel(0,"J'arrive !","tiglimatic"),route);
+    let checkDirect = /(jacques)/;
+    if (checkDirect.test(message.content)){
+      this.ai.letBotSay(new MessageModel(0,"CHIRAC","bot"),route);
     }
   }
 

@@ -1,10 +1,10 @@
 /**
  * Created by alexh on 12/06/2017.
  */
-
+import {DEFAULT_CHANNEL} from "shared/constants/channels";
 
 export class CurrentThreadModel {
-  private static currentThread = 139;
+  private static currentThread = DEFAULT_CHANNEL;
   private static olderPages = 0;
   public static lastMessageId = -1;
 

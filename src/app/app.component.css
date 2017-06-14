@@ -26,3 +26,17 @@ app-message-list{
 .navbar{
   background-color: #ffffff;
 }
+
+.channels{
+  background-image: url("../assets/channels.png");
+}
+
+div{
+  background-repeat: no-repeat;
+  background-position-x: 15px;
+  background-position-y: 15px;
+}
+
+.discussion{
+  background-image: url("../assets/chat.png");
+}

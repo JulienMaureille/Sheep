@@ -1,15 +1,16 @@
-<div class="buttons">
-  <button type="button" class="btn btn-sm page" (click)="previousPage()" [disabled]="previousDisabled">&#171;</button>&nbsp;
-  <button type="button" class="btn btn-sm page" (click)="nextPage()" [disabled]="nextDisabled">&#187;</button>
-</div>
+
 <div id="list" class="p-4">
     <div *ngFor="let currentThread of threadList">
         <app-thread [thread]="currentThread"></app-thread>
     </div>
 </div>
+<div mt-5 mb-5 class="buttons">
+  <button type="button" class="btn btn-sm page" (click)="previousPage()" [disabled]="previousDisabled">&#171;</button>&nbsp;
+  <button type="button" class="btn btn-sm page" (click)="nextPage()" [disabled]="nextDisabled">&#187;</button>
+</div>
 
 <div class="row-md-5 mt-5 p-4 create">
-    <h2>Create your channel !</h2>
+    <h2>Create a channel</h2>
     <input type="text" class="" placeholder="name" [(ngModel)]="threadName" >
     <button type="button" (click)="addThread()" class="btn btn-primary">Create</button>
 </div>

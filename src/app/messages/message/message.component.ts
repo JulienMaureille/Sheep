@@ -33,14 +33,18 @@ export class MessageComponent implements OnInit {
       console.log(this.message.content);
       this.url = true;
     }
-    // const pattern = new RegExp("https://.*[^\t\n ]*");
-    // this.text = pattern.exec(this.message.content);
+    const pattern = new RegExp("https://.*[^\t\n ]*");
+    this.text = pattern.exec(this.message.content);
 
   }
 
-  // private replacer(substring: string, ...args: any[]) {
-  //   return this.http.get(substring).map((reponse) => {
-  //     return reponse.headers.get("Content-Type").toString;
-  //   });
-  // }
+  private isOnlyEmoji(){
+    return this.message.content.match("([:;][D)op])|<3|xd");
+  }
+
+  private replacer(substring: string, ...args: any[]) {
+    return this.http.get(substring).map((reponse) => {
+      return reponse.headers.get("Content-Type").toString;
+    });
+  }
 }

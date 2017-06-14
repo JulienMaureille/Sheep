@@ -1,10 +1,20 @@
-.infos{
-    font-size: 14px;
+.message{
+  padding:8px 12px
+}
+
+.author{
+    font-size: 17px;
+    font-weight:600;
+    margin-right:6px;
 }
 .time{
-    color: #034978;
-    font-size: 11px;
+    color: #989898;
+    font-size: 12px;
 }
 .content{
-    font-size: 15px;
+    font-size: 16px;
+}
+
+.contentEmoji{
+  font-size: 33px;
 }

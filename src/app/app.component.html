@@ -4,34 +4,17 @@
 
 <div *ngIf="isConnected()" class="container">
   <div class="row justify-content-md-center">
-    <div class="col-md-3 m-3 p-3 card">
-      <nav class="navbar navbar-light bg-faded">
-        <a class="navbar-brand" >
-          <p> <img id="imgchannel" src="/assets/channels.png" width="50" height="50"  alt="">
-            <span id="txtchannel">Channels</span> </p>
-        </a>
-      </nav>
+    <div class="col-md-3 m-3 p-3 card channels">
+      <span id="txtchannel">Channels</span>
+      <hr>
       <app-thread-list></app-thread-list>
     </div>
 
-    <div class="col-md-5 m-3 p-3 card ">
-      <nav class="navbar navbar-light bg-faded2">
-        <a class="navbar-brand2" >
-          <p> <img id="imgchat" src="/assets/chat.jpg" width="50" height="50"  alt="">
-            <span id="txtchat">{{title}}</span> </p>
-        </a>
-      </nav>
+    <div class="col-md-8 m-3 p-3 card discussion">
+      <span id="txtchat">Discussion</span>
+      <hr>
       <app-message-list #cDiv></app-message-list>
       <app-message-form></app-message-form>
-    </div>
-
-    <div class="col-md-2 m-3 p-3 card">
-      <nav class="navbar navbar-light bg-faded3">
-        <a class="navbar-brand3" >
-          <p> <img id="imguser" src="/assets/users.jpg" width="50" height="50"  alt="">
-            <span id="txtuser">Users</span> </p>
-        </a>
-      </nav>
     </div>
   </div>
 </div>

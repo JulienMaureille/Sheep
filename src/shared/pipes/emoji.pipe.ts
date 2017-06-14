@@ -10,7 +10,7 @@ export class EmojiPipe implements PipeTransform {
   }
 
   transform(value: string) {
-    const pattern = new RegExp("[:;<][)op]");
+    const pattern = new RegExp("([:;][D)(op])|<3|xd");
     return value.replace(pattern, this.replacer);
   }
 
@@ -20,16 +20,21 @@ export class EmojiPipe implements PipeTransform {
         return "&#128512;";
       case ";)":
         return "&#128521;";
+      case ";p":
+        return "&#128540;";
       case ":(":
         return "&#128543;";
       case ":D":
-        return "&#128527;";
+        return "&#128512;";
       case ":p":
         return "&#128523;";
       case "<3":
         return "&#128148;";
       case  ":o":
-        return "&#128558;";
+        return "&#128559;";
+      case  "xd":
+        return "&#128514";
+      ;
     }
   }
 
