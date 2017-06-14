@@ -40,8 +40,11 @@ export class MessageService {
 
 
   public startInterval() {
-    if (this.interval) {clearInterval(this.interval);}
-    this.interval = setInterval(() => (this.getMessages(new CurrentThreadModel().getMessagesRoute())), 1500);
+    if (this.interval) {
+      clearInterval(this.interval);
+    }
+    this.getMessages(new CurrentThreadModel().getMessagesRoute());
+    this.interval = setInterval(() => (this.getMessages(new CurrentThreadModel().getMessagesRoute())), 1000);
   }
 
   /**
