@@ -76,8 +76,7 @@ export class ThreadService {
   private extractThreadAndGetThreads(response: Response): ThreadModel {
     this.getThreads();
     const responseBody = response.json();
-    return new ThreadModel(responseBody.id, responseBody.name); // A remplacer ! On retourne ici un Thread *
-    // vide seulement pour que Typescript ne lève pas d'erreur !
+    return new ThreadModel(responseBody.id, responseBody.name);
   }
 
 }

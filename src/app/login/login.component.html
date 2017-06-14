@@ -9,5 +9,16 @@
     <button type="button" class="btn btn-lg btn-primary btn-block mt-3" name="connect" (click)="connectIfValid()">Log in</button>
   </form>
 
+  <a *ngIf="isValid(); else elseBlock" >
+    <div class="alert alert-success" id="validpseudo">
+      <strong>Pseudo valide</strong> Le pseudo est valide, connectez vous!
+    </div>
+  </a>
+  <ng-template #elseBlock>
+    <div class="alert alert-danger" id="invalidpseudo">
+      <span id="txtinvalid"><strong>Pseudo invalide</strong> Le pseudo doit être en caractères minuscules uniquement.</span>
+    </div>
+  </ng-template>
+
 </div>
 </div>

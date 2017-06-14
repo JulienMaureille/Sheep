@@ -10,13 +10,12 @@ import {LoginService} from "../../shared/services/login/login.service";
 export class LoginComponent implements OnInit {
 
     public username: string;
-    public defaultpseudo: "anonymous";
 
     constructor(private loginService: LoginService) {
 
     }
 
-    ngOnInit() { this.username = this.defaultpseudo; }
+    ngOnInit() { this.username = ""; }
 
     connectIfValid() {
       if (this.isValid()) {

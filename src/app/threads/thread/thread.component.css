@@ -16,15 +16,30 @@ a:hover{
     color: #434343;
     font-weight: 600;
 }
-#time{
+#time,#timelastmsg{
   font-size: 12px;
   font-weight: normal;
   color: #7a7a7a;
 }
+
+button{
+  margin-bottom: 3px;
+}
+
 
 .thread{
   margin:5px 10px;
   border-bottom: 1px solid #ddd;
   padding-bottom:10px;
   padding-top:10px;
+}
+
+#timer,#timer2{
+  font-size: 12px;
+  font-weight: normal;
+  color: #7a7a7a;
+}
+img{
+  width: 20px;
+  height: 20px;
 }
