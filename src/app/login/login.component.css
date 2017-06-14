@@ -47,3 +47,13 @@ body {
   padding-top:15px;
   height: 70px;
 }
+
+#validpseudo{
+  font-size: 14px;
+}
+#invalidpseudo{
+  font-size: 14px;
+}
+
+
+
