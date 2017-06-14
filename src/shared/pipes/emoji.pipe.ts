@@ -10,7 +10,7 @@ export class EmojiPipe implements PipeTransform {
   }
 
   transform(value: string) {
-    const pattern = new RegExp("([:;][D)op])|<3|xd");
+    const pattern = new RegExp("([:;][D)(op])|<3|xd");
     return value.replace(pattern, this.replacer);
   }
 
