@@ -29,7 +29,12 @@ export class MessageComponent implements OnInit {
    */
 
   ngOnInit() {
-    if (this.message.content.match(".*http.*") && new URL(this.message.content).hostname.match(".*(youtube|instagram|twitter).*")) {
+    const youtube = new RegExp("https?://(www\.)?(youtube\.com|youtu\.be)/[^ \t\n]+");
+    const insta = new RegExp("https?://(www\.)?(instagram\.com|instagr\.am)/p/[^ \t\n\./]+");
+    const twitter = new RegExp("http(s)?://(www\.)?(twitter\.com)/[^\t\n\./]+/status/[^\t\n\./]+");
+    const re = new RegExp("(" + youtube.source + ")|(" + insta.source + ")|(" + twitter.source + ")");
+
+    if (this.message.content.match(re)) {
       console.log(this.message.content);
       this.url = true;
     }
@@ -39,7 +44,9 @@ export class MessageComponent implements OnInit {
   }
 
   private isOnlyEmoji() {
-    return this.message.content.match("([:;][D)op])|<3|xd");
+    if (this.message.content && this.message.content.match("([:;][D)op])|<3|xd"))
+      return true;
+    return false;
   }
 
   private replacer(substring: string, ...args: any[]) {
