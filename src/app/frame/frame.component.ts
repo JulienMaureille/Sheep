@@ -31,15 +31,12 @@ export class FrameComponent implements OnInit {
     if (url.match("youtube")) {
       this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl(
         "https://www.youtube.com/embed/" + this.message.content.match("v=[^&]*")[0].split("=")[1]);
-    }
-    else if (url.match("instagram")) {
+    } else if (url.match("insta")) {
       const insta = new URL(url);
       this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl(insta.hostname + insta.pathname + "embed");
-    }
-    else if (url.match("twitter")) {
+    } else if (url.match("twitter")) {
       this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl("http://twitframe.com/show?url=" + url);
-    }
-    else {
+    } else {
       this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl(url);
     }
   }

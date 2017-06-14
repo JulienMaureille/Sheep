@@ -35,8 +35,8 @@ export class AIService {
     if (str.length < 256) {
       this.http.get(finalUrl, options).subscribe((data) => {
 
-        const str = data.json().result.fulfillment.messages[0].speech;
-        const mess = new MessageModel(0, str, "bot");
+        const speech = data.json().result.fulfillment.messages[0].speech;
+        const mess = new MessageModel(0, speech, "bot");
         this.letBotSay(mess, route);
 
       });

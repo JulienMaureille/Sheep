@@ -14,7 +14,6 @@ import {ThreadComponent} from "./threads/thread/thread.component";
 import {AIService} from "../shared/services/extern/ai/ai.service";
 import {LoginComponent} from "./login/login.component";
 import {LoginService} from "../shared/services/login/login.service";
-import {IFramePipe} from "../shared/pipes/iframe.pipe";
 import {EmojiPipe} from "../shared/pipes/emoji.pipe";
 import {FrameComponent} from "./frame/frame.component";
 import {TopBannerComponent} from "./top-banner/top-banner.component";
@@ -31,7 +30,6 @@ import {LinkPipe} from "../shared/pipes/link.pipe";
     ThreadListComponent,
     MessageComponent,
     LoginComponent,
-    IFramePipe,
     EmojiPipe,
     FrameComponent,
     TopBannerComponent,

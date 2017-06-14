@@ -32,7 +32,6 @@ export class EmojiPipe implements PipeTransform {
         return "&#128559;";
       case  "xd":
         return "&#128514";
-        ;
     }
   }
 
