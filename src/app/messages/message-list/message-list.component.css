@@ -1,17 +1,10 @@
 #nomsg{
-  align-items: center;
-  position: relative;
   padding-left: 30%;
+  padding-right: 30%;
 }
 #msgnomsg{
+  margin: auto;
   font-size: 20px;
   padding-left: 4%;
-  padding-right: 2%;
+  text-align: center;
 }
-#a{
-  margin: auto;
-}
-#conteneurtxt{
-  margin: auto;
-}
-
