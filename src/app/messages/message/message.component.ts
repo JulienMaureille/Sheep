@@ -38,7 +38,7 @@ export class MessageComponent implements OnInit {
 
   }
 
-  private isOnlyEmoji(){
+  private isOnlyEmoji() {
     return this.message.content.match("([:;][D)op])|<3|xd");
   }
 

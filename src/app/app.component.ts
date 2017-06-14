@@ -11,16 +11,16 @@ export class AppComponent {
 
   public title: string;
 
-  constructor(private loginService:LoginService) {
+  constructor(private loginService: LoginService) {
     this.title = "Chat";
     Observable.create();
   }
 
-  logoff(){
+  logoff() {
     this.loginService.logoff();
   }
 
-  isConnected(){
+  isConnected() {
     return this.loginService.isConnected();
   }
 

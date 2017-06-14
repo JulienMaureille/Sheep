@@ -13,7 +13,7 @@ export class FrameComponent implements OnInit {
   @Input() message: MessageModel;
   public trustURL: SafeResourceUrl;
 
-  constructor(private sanitizer: DomSanitizer, private http : Http) {
+  constructor(private sanitizer: DomSanitizer, private http: Http) {
 
   }
 
@@ -26,21 +26,22 @@ export class FrameComponent implements OnInit {
    * le faire dans le ngOnInit.
    */
   ngOnInit() {
-    let url = this.message.content;
+    const url = this.message.content;
 
     if (url.match("youtube")) {
       this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl(
         "https://www.youtube.com/embed/" + this.message.content.match("v=[^&]*")[0].split("=")[1]);
     }
-    else if (url.match("instagram")){
-      let insta = new URL(url);
+    else if (url.match("instagram")) {
+      const insta = new URL(url);
       this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl(insta.hostname + insta.pathname + "embed");
     }
-    else if (url.match("twitter")){
+    else if (url.match("twitter")) {
       this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl("http://twitframe.com/show?url=" + url);
     }
-    else
+    else {
       this.trustURL = this.sanitizer.bypassSecurityTrustResourceUrl(url);
+    }
   }
 
 }

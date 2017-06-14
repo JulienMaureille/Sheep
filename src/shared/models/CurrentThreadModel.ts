@@ -16,7 +16,8 @@ export class CurrentThreadModel {
   }
 
   public getMessagesRoute(): string {
-    return CurrentThreadModel.currentThread + "/messages" + ((CurrentThreadModel.olderPages == 0) ? "" : ("?page=" + CurrentThreadModel.olderPages));
+    return CurrentThreadModel.currentThread + "/messages" +
+      ((CurrentThreadModel.olderPages === 0) ? "" : ("?page=" + CurrentThreadModel.olderPages));
   }
 
   public getId() {

@@ -30,7 +30,7 @@ export class ThreadComponent implements OnInit {
   }
 
   isCurrent() {
-    return this.thread.id == new CurrentThreadModel().getId();
+    return this.thread.id === new CurrentThreadModel().getId();
   }
 
   removeThread() {
@@ -39,8 +39,8 @@ export class ThreadComponent implements OnInit {
   }
 
   changeThreadId(id: number) {
-    let currentThread = new CurrentThreadModel();
-    currentThread.switchThread(id)
+    const currentThread = new CurrentThreadModel();
+    currentThread.switchThread(id);
 
     this.messageService.startInterval();
   }
